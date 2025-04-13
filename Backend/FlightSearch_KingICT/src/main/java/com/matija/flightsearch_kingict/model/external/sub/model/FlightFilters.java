@@ -1,0 +1,8 @@
+package com.matija.flightsearch_kingict.model.external.sub.model;
+
+import lombok.Data;
+
+@Data
+public class FlightFilters {
+    private CabinRestrictions[] cabinRestrictions;
+}
