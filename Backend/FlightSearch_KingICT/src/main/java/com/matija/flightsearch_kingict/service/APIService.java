@@ -1,6 +1,7 @@
 package com.matija.flightsearch_kingict.service;
 
 import com.matija.flightsearch_kingict.model.domain.FlightOfferResponse;
+import com.matija.flightsearch_kingict.model.domain.LocationResponse;
 import com.matija.flightsearch_kingict.model.domain.TokenResponse;
 import com.matija.flightsearch_kingict.model.external.FlightOfferCallModel;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @Service
 public class APIService {
@@ -52,7 +55,7 @@ public class APIService {
                 .bodyToMono(FlightOfferResponse.class);
     }
 
-    public Mono<String> getLocationAirport(String token, String keyword) {
+    public Mono<LocationResponse> getLocationAirport(String token, String keyword) {
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path(locationUrl)
@@ -63,7 +66,7 @@ public class APIService {
                 .header("Authorization", "Bearer " + token)
                 .header("Content-Type", "application/vnd.amadeus+json")
                 .retrieve()
-                .bodyToMono(String.class);
+                .bodyToMono(LocationResponse.class);
     }
 
 
