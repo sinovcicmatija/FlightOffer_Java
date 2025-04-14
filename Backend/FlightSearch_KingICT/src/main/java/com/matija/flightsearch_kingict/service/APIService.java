@@ -21,6 +21,10 @@ public class APIService {
 
     @Value("${amadeus.api.token-url}")
     private String tokenUrl;
+
+    @Value("${amadeus.api.location-url}")
+    private String locationUrl;
+
     private final WebClient webClient;
 
     public APIService(WebClient webClient) {
@@ -48,7 +52,21 @@ public class APIService {
                 .bodyToMono(FlightOfferResponse.class);
     }
 
-    
+    public Mono<String> getLocationAirport(String token, String keyword) {
+        return webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(locationUrl)
+                        .queryParam("subType","CITY,AIRPORT")
+                        .queryParam("keyword", keyword)
+                        .build()
+                )
+                .header("Authorization", "Bearer " + token)
+                .header("Content-Type", "application/vnd.amadeus+json")
+                .retrieve()
+                .bodyToMono(String.class);
+    }
+
+
 
 
 
