@@ -1,9 +1,9 @@
 package com.matija.flightsearch_kingict.model.domain.sub.model;
 
-@lombok.Data
-public class Data {
+import lombok.Data;
+
+@Data
+public class Fees {
+    private String amount;
     private String type;
-    private String id;
-    private String source;
-    
 }
