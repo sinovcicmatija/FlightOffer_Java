@@ -1,5 +1,6 @@
 package com.matija.flightsearch_kingict.service;
 
+import com.matija.flightsearch_kingict.model.domain.FlightOfferResponse;
 import com.matija.flightsearch_kingict.model.domain.TokenResponse;
 import com.matija.flightsearch_kingict.model.external.FlightOfferCallModel;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,15 +38,17 @@ public class APIService {
                 .bodyToMono(TokenResponse.class);
     }
 
-    public Mono<String> getFlightOffer(String token, FlightOfferCallModel flightOfferCallModel) {
+    public Mono<FlightOfferResponse> getFlightOffer(String token, FlightOfferCallModel flightOfferCallModel) {
         return webClient.post()
                 .uri(flightOffersUrl)
                 .header("Authorization", "Bearer " + token)
                 .header("Content-Type", "application/vnd.amadeus+json")
                 .bodyValue(flightOfferCallModel)
                 .retrieve()
-                .bodyToMono(String.class);
+                .bodyToMono(FlightOfferResponse.class);
     }
+
+    
 
 
 
