@@ -7,5 +7,5 @@ import java.util.List;
 
 @Data
 public class LocationResponse {
-    private List<LocationData> locationData;
+    private List<LocationData> data;
 }

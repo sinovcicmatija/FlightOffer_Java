@@ -4,12 +4,13 @@ import com.matija.flightsearch_kingict.model.domain.FlightOfferResponse;
 import com.matija.flightsearch_kingict.model.domain.sub.model.FlightData;
 import com.matija.flightsearch_kingict.model.dto.FlightOfferDTO;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class FlightOfferMapper {
 
-    public static List<FlightOfferDTO> toDTO(FlightOfferResponse response, int passengerCount) {
+    public static List<FlightOfferDTO> toDTO(FlightOfferResponse response) {
         List<FlightOfferDTO> dtoList = new ArrayList<>();
 
         for(FlightData flightData : response.getData()) {
@@ -42,9 +43,13 @@ public class FlightOfferMapper {
                         flightData.getItineraries()[1].getSegments().length - 1
                 );
             }
-            dto.setPassengerCount(passengerCount);
+            dto.setPassengerCount(
+                    flightData.getTravelerPricings().length
+            );
             dto.setCurrency(flightData.getPrice().getCurrency());
             dto.setTotalPrice(flightData.getPrice().getGrandTotal());
+
+            dtoList.add(dto);
         }
         return dtoList;
     }

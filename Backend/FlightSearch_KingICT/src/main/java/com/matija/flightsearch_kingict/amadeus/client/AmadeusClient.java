@@ -1,4 +1,4 @@
-package com.matija.flightsearch_kingict.service;
+package com.matija.flightsearch_kingict.amadeus.client;
 
 import com.matija.flightsearch_kingict.model.domain.FlightOfferResponse;
 import com.matija.flightsearch_kingict.model.domain.LocationResponse;
@@ -10,14 +10,12 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-
 @Service
-public class APIService {
-    @Value("{amadeus.api.key}")
-    private String APIKey;
-    @Value("{amadeus.api.secret}")
-    private String APISecret;
+public class AmadeusClient {
+    //@Value("{amadeus.api.key}")
+    //private String APIKey;
+    //@Value("{amadeus.api.secret}")
+    //private String APISecret;
 
     @Value("${amadeus.api.flight-offers-url}")
     private String flightOffersUrl;
@@ -30,11 +28,13 @@ public class APIService {
 
     private final WebClient webClient;
 
-    public APIService(WebClient webClient) {
+    public AmadeusClient(WebClient webClient) {
         this.webClient = webClient;
     }
 
     public Mono<TokenResponse> getToken() {
+        String APIKey = "l9zJCQKmKNRvhWpSvps31EdeTSAOdjTQ";
+        String APISecret = "AkaDR2d5F1nRTerN";
         return webClient.post()
                 .uri(tokenUrl)
                 .header("Content-Type: application/x-www-form-urlencoded")
