@@ -1,0 +1,96 @@
+.form-grid {
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    background-color: #f5f5f5;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .row-1 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .input-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .input-wrapper label {
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #333;
+  }
+  
+  .input-wrapper input,
+  .input-wrapper select,
+  .input-wrapper .clickable-field {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+
+  .row-2 {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+  }
+  
+  .search-btn {
+    padding: 10px 20px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .search-btn:hover {
+    background-color: #125aa3;
+  }
+  
+
+  .suggestions-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-top: 4px;
+    z-index: 9999; 
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 0;
+  }
+  
+  .suggestions-list li {
+    padding: 10px 12px;
+    cursor: pointer;
+  }
+  
+  .suggestions-list li:hover {
+    background-color: #e8f0fe;
+  }
+  
