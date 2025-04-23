@@ -1,7 +1,7 @@
 package com.matija.flightsearch_kingict.controller;
 
+import com.matija.flightsearch_kingict.model.dto.FlightOfferCallDTO;
 import com.matija.flightsearch_kingict.model.dto.FlightOfferDTO;
-import com.matija.flightsearch_kingict.model.external.FlightOfferCallModel;
 import com.matija.flightsearch_kingict.service.FlightOfferService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +17,8 @@ public class FlightOfferController {
     }
 
         @PostMapping("/flight-offers")
-        public List<FlightOfferDTO> getFlightOffer(@RequestBody FlightOfferCallModel callModel) {
-            return flightOfferService.getFlightOffer(callModel);
+        public List<FlightOfferDTO> getFlightOffer(@RequestBody FlightOfferCallDTO callModelDTO) {
+            return flightOfferService.getFlightOffer(callModelDTO);
         }
     }
 
