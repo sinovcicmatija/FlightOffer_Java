@@ -2,6 +2,7 @@ package com.matija.flightsearch_kingict.config;
 
 import com.matija.flightsearch_kingict.amadeus.client.AmadeusClient;
 import com.matija.flightsearch_kingict.model.domain.TokenResponse;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public class TokenService {
     private final AmadeusClient amadeusClient;
 
 
-    public TokenService(RedisTemplate<String, String> redisTemplate, AmadeusClient amadeusClient)
+    public TokenService(@Qualifier("redisTokenTemplate") RedisTemplate<String, String> redisTemplate, AmadeusClient amadeusClient)
     {
         this.redisTemplate = redisTemplate;
         this.amadeusClient = amadeusClient;
