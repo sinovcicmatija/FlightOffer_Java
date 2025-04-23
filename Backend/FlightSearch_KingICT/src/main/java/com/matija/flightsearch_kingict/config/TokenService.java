@@ -31,7 +31,7 @@ public class TokenService {
 
         if (tokenResponse != null) {
             redisTemplate.opsForValue().set("access_token", tokenResponse.getAccess_token(),
-                    Duration.ofSeconds(5));
+                    Duration.ofSeconds(tokenResponse.getExpires_in()));
             return tokenResponse.getAccess_token();
         }
 
