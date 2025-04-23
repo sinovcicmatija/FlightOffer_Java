@@ -5,10 +5,19 @@ import com.matija.flightsearch_kingict.model.domain.sub.model.FlightData;
 import com.matija.flightsearch_kingict.model.dto.FlightOfferDTO;
 
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FlightOfferMapper {
+
+    private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ISO_DATE_TIME;
+    private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("dd.MM.yyyy. 'u' HH:mm");
+
+    private static String formatDateTime(String isoDateTime) {
+        return LocalDateTime.parse(isoDateTime, INPUT_FORMAT).format(OUTPUT_FORMAT);
+    }
 
     public static List<FlightOfferDTO> toDTO(FlightOfferResponse response) {
         List<FlightOfferDTO> dtoList = new ArrayList<>();
@@ -22,18 +31,18 @@ public class FlightOfferMapper {
             );
             dto.setArrivalAirport(
                     flightData.getItineraries()[0]
-                            .getSegments()[flightData.getItineraries()[flightData.getItineraries().length - 1].getSegments().length -1]
+                            .getSegments()[flightData.getItineraries()[0].getSegments().length -1]
                             .getArrival().getIataCode()
             );
             dto.setDepartureDate(
-                    flightData.getItineraries()[0].getSegments()[0].getDeparture().getAt()
+                    formatDateTime(flightData.getItineraries()[0].getSegments()[0].getDeparture().getAt())
             );
             if(isRoundTrip) {
                 dto.setReturnDate(
-                        flightData.getItineraries()[1]
-                                .getSegments()[flightData.getItineraries()[flightData.getItineraries().length -1].getSegments().length -1]
+                        formatDateTime(flightData.getItineraries()[1]
+                                .getSegments()[flightData.getItineraries()[1].getSegments().length -1]
                                 .getArrival().getAt()
-                );
+                        ));
             }
             dto.setNumberOfTransfersDeparture(
                     flightData.getItineraries()[0].getSegments().length - 1
