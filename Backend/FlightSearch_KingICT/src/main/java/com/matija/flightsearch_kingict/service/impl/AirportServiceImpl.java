@@ -1,6 +1,7 @@
 package com.matija.flightsearch_kingict.service.impl;
 
 import com.matija.flightsearch_kingict.amadeus.client.AmadeusClient;
+import com.matija.flightsearch_kingict.config.TokenService;
 import com.matija.flightsearch_kingict.model.domain.LocationResponse;
 import com.matija.flightsearch_kingict.model.domain.TokenResponse;
 import com.matija.flightsearch_kingict.model.dto.AirportDTO;
@@ -15,14 +16,16 @@ import java.util.Objects;
 public class AirportServiceImpl implements AirportService {
 
     private final AmadeusClient client;
+    private final TokenService tokenService;
 
-    public AirportServiceImpl(AmadeusClient client) {
+    public AirportServiceImpl(AmadeusClient client, TokenService tokenService) {
         this.client = client;
+        this.tokenService = tokenService;
     }
 
     @Override
     public List<AirportDTO> getAirport(String keyword) {
-        String token = Objects.requireNonNull(client.getToken().block()).getAccess_token();
+        String token = tokenService.getAccessToken();
 
         LocationResponse response = client.getLocationAirport(token, keyword).block();
 

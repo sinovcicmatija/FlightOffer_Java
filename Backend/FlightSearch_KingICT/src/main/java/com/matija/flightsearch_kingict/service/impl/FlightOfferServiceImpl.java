@@ -1,6 +1,7 @@
 package com.matija.flightsearch_kingict.service.impl;
 
 import com.matija.flightsearch_kingict.amadeus.client.AmadeusClient;
+import com.matija.flightsearch_kingict.config.TokenService;
 import com.matija.flightsearch_kingict.model.domain.FlightOfferResponse;
 import com.matija.flightsearch_kingict.model.dto.FlightOfferCallDTO;
 import com.matija.flightsearch_kingict.model.dto.FlightOfferDTO;
@@ -17,14 +18,16 @@ import java.util.Objects;
 public class FlightOfferServiceImpl implements FlightOfferService {
 
     private final AmadeusClient client;
+    private final TokenService tokenService;
 
-    public FlightOfferServiceImpl(AmadeusClient client) {
+    public FlightOfferServiceImpl(AmadeusClient client, TokenService tokenService) {
         this.client = client;
+        this.tokenService = tokenService;
     }
 
     @Override
     public List<FlightOfferDTO> getFlightOffer(FlightOfferCallDTO callModelDTO) {
-        String token = Objects.requireNonNull(client.getToken().block()).getAccess_token();
+        String token = tokenService.getAccessToken();
 
         FlightOfferCallModel callModel = FlightOfferCallMapper.MapToFlightOfferCallModel(callModelDTO);
 
