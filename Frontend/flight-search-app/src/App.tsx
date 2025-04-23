@@ -4,12 +4,13 @@ import FlightResults from './components/FlightResults/FlightResults';
 import { FlightOfferData } from './models/FlightOfferData';
 
 function App() {
-  const [results, setResults] = useState<FlightOfferData[]>([]);
+  const [offers, setOffers] = useState<FlightOfferData[]>([]);
 
   return (
     <div className="App">
       <h1>Pretraga letova</h1>
-      <FlightSearch/>
+      <FlightSearch onResultsFound={setOffers}/>
+      {offers.length > 0 && <FlightResults offers={offers} />}
     </div>
   );
 }

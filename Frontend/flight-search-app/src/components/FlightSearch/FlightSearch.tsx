@@ -7,8 +7,21 @@ import TravelerSelector from './TravelSelector';
 import CurrencySelector from './CurrencySelector';
 import { FlightSearchDTO } from '../../models/FlightSearchDTO';
 import { getFlightOfferData } from '../../services/api.service';
+import { FlightOfferData } from '../../models/FlightOfferData';
+import { off } from 'process';
 
-function FlightSearch() {
+interface Props {
+    onResultsFound: (results: FlightOfferData[]) => void;
+  }
+
+  const formatDate = (date: Date) => {
+    const year = date.getFullYear();
+    const month = `${date.getMonth() + 1}`.padStart(2, '0');
+    const day = `${date.getDate()}`.padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+function FlightSearch({ onResultsFound }: Props) {
     const [departureInput, setDepartureInput] = useState('');
     const [arrivalInput, setArrivalInput] = useState('');
     const [selectedDepartureIata, setSelectedDepartureIata] = useState<string | null>(null);
@@ -30,17 +43,21 @@ function FlightSearch() {
         const dto: FlightSearchDTO = {
             originIata: selectedDepartureIata,
             destinationIata: selectedArrivalIata,
-            departureDate: departureDate.toISOString().split('T')[0],
-            returnDate: isRoundTrip && arrivalDate ? arrivalDate.toISOString().split('T')[0] : undefined,
+            departureDate: formatDate(departureDate),
+            returnDate: isRoundTrip && arrivalDate ? formatDate(arrivalDate) : undefined,
             isRoundTrip,
             adults,
             children,
             cabinClass,
             currency
         };
+        console.log(dto);
 
         getFlightOfferData(dto)
-            .then((offers) => console.log("Rezultati:", offers)) 
+            .then((offers) => {
+                console.log(offers);
+                onResultsFound(offers);
+            })
             .catch((err) => console.error("Greška:", err));
     };
 

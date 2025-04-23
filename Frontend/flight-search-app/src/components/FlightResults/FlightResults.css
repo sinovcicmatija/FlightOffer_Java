@@ -1,0 +1,33 @@
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+  }
+  
+  .results-table th,
+  .results-table td {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .results-table th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .results-table td {
+    color: #444;
+  }
+  
+  .results-table tr:last-child td {
+    border-bottom: none;
+  }
+  

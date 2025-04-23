@@ -13,5 +13,6 @@ export const getAirportData = async (keyword: string): Promise<AirportData[]> =>
 
 export const getFlightOfferData = async (searchData: FlightSearchDTO): Promise<FlightOfferData[]> => {
     const { data } = await axios.post(`${apiUrl}/flight-offers`, searchData);
+    console.log(searchData);
     return data;
 }
