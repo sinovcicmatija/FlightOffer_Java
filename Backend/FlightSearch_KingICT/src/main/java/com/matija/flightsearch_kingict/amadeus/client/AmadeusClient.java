@@ -12,10 +12,6 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class AmadeusClient {
-    //@Value("{amadeus.api.key}")
-    //private String APIKey;
-    //@Value("{amadeus.api.secret}")
-    //private String APISecret;
 
     @Value("${amadeus.api.flight-offers-url}")
     private String flightOffersUrl;
@@ -26,6 +22,12 @@ public class AmadeusClient {
     @Value("${amadeus.api.location-url}")
     private String locationUrl;
 
+    @Value("${amadeus.api.key}")
+    private String APIKey;
+
+    @Value("${amadeus.api.secret}")
+    private String APISecret;
+
     private final WebClient webClient;
 
     public AmadeusClient(WebClient webClient) {
@@ -33,8 +35,6 @@ public class AmadeusClient {
     }
 
     public Mono<TokenResponse> getToken() {
-        String APIKey = "l9zJCQKmKNRvhWpSvps31EdeTSAOdjTQ";
-        String APISecret = "AkaDR2d5F1nRTerN";
         return webClient.post()
                 .uri(tokenUrl)
                 .header("Content-Type: application/x-www-form-urlencoded")
