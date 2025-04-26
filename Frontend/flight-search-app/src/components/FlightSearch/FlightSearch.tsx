@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { AirportData } from '../../models/AirportData';
-import AirportAutocomplete from './AirportAutocomplete';
+import AirportAutocomplete from './AirportAutocomplete/AirportAutocomplete';
 import './FlightSearch.css';
-import DateSelector from './DateSelector';
-import TravelerSelector from './TravelSelector';
-import CurrencySelector from './CurrencySelector';
+import DateSelector from './DateSelector/DateSelector';
+import TravelerSelector from './TravelerSelector/TravelSelector';
+import CurrencySelector from './CurrencySelector/CurrencySelector';
 import { FlightSearchDTO } from '../../models/FlightSearchDTO';
 import { getFlightOfferData } from '../../services/api.service';
 import { FlightOfferData } from '../../models/FlightOfferData';

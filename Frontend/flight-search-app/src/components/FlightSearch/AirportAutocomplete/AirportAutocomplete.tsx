@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getAirportData } from "../../services/api.service";
-import { AirportData } from "../../models/AirportData";
+import { getAirportData } from "../../../services/api.service";
+import { AirportData } from "../../../models/AirportData";
 import './AirportAutocomplete.css';
 
 interface Props {
