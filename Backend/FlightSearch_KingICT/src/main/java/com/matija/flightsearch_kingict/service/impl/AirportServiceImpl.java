@@ -4,16 +4,13 @@ import com.matija.flightsearch_kingict.amadeus.client.AmadeusClient;
 import com.matija.flightsearch_kingict.config.AirportCacheService;
 import com.matija.flightsearch_kingict.config.TokenService;
 import com.matija.flightsearch_kingict.model.domain.LocationResponse;
-import com.matija.flightsearch_kingict.model.domain.TokenResponse;
 import com.matija.flightsearch_kingict.model.dto.AirportDTO;
 import com.matija.flightsearch_kingict.service.AirportService;
 import com.matija.flightsearch_kingict.util.AirportMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class AirportServiceImpl implements AirportService {
@@ -40,6 +37,10 @@ public class AirportServiceImpl implements AirportService {
         System.out.println("Podaci nisu isti kao keshirani, dohvacam nove...");
 
         LocationResponse response = client.getLocationAirport(token, keyword).block();
+        if(response == null) {
+            return List.of();
+        }
+
         List<AirportDTO> airportsDTOs = AirportMapper.toDTO(response);
         airportCacheService.cacheAirport(normalizedKey,airportsDTOs, Duration.ofMinutes(10));
 

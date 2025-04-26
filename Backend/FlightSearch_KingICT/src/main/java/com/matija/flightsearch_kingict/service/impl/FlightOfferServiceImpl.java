@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class FlightOfferServiceImpl implements FlightOfferService {
@@ -44,6 +43,10 @@ public class FlightOfferServiceImpl implements FlightOfferService {
 
         FlightOfferCallModel callModel = FlightOfferCallMapper.MapToFlightOfferCallModel(callModelDTO);
         FlightOfferResponse response = client.getFlightOffer(token, callModel).block();
+        if(response == null) {
+            return List.of();
+        }
+
         List<FlightOfferDTO> offerDTOs = FlightOfferMapper.toDTO(response);
         flightCacheService.cacheOffers(hashKey, offerDTOs, Duration.ofMinutes(10));
 

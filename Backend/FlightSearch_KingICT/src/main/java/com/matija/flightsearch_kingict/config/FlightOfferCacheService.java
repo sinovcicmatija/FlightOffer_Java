@@ -1,6 +1,5 @@
 package com.matija.flightsearch_kingict.config;
 
-import com.matija.flightsearch_kingict.amadeus.client.AmadeusClient;
 import com.matija.flightsearch_kingict.model.dto.FlightOfferDTO;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
