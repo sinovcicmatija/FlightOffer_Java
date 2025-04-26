@@ -1,6 +1,6 @@
-// src/components/FlightSearch/TravelerSelector.tsx
 import { useState } from 'react';
 import './TravelerSelector.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface Props {
   adults: number;
@@ -27,7 +27,8 @@ function TravelerSelector({
   const travelerSummary = `${adults + children} ${adults + children === 1 ? 'Traveler' : 'Putnika'}, ${cabinClass}`;
 
   return (
-    <div className="traveler-wrapper">
+    <div className="input-wrapper traveler-wrapper">
+      <label>Klasa i putnici</label>
       <input
         type="text"
         readOnly
@@ -38,7 +39,7 @@ function TravelerSelector({
 
       {visible && (
         <div className="traveler-box">
-          <label>Cabin class</label>
+          <label>Klasa kabine</label>
           <select value={cabinClass} onChange={(e) => onCabinClassChange(e.target.value)}>
             {cabinClasses.map((cls) => (
               <option key={cls} value={cls}>{cls}</option>
@@ -47,19 +48,19 @@ function TravelerSelector({
 
           <div className="traveler-group">
             <label>Odrasli</label>
-            <button onClick={() => onAdultsChange(Math.max(1, adults - 1))}>-</button>
+            <button className="btn btn-outline-secondary" onClick={() => onAdultsChange(Math.max(1, adults - 1))}>-</button>
             {adults}
-            <button onClick={() => onAdultsChange(adults + 1)}>+</button>
+            <button className="btn btn-outline-secondary" onClick={() => onAdultsChange(adults + 1)}>+</button>
           </div>
 
           <div className="traveler-group">
             <label>Djeca</label>
-            <button onClick={() => onChildrenChange(Math.max(0, children - 1))}>-</button>
+            <button className="btn btn-outline-secondary" onClick={() => onChildrenChange(Math.max(0, children - 1))}>-</button>
             {children}
-            <button onClick={() => onChildrenChange(children + 1)}>+</button>
+            <button className="btn btn-outline-secondary" onClick={() => onChildrenChange(children + 1)}>+</button>
           </div>
 
-          <button onClick={toggleBox}>Primijeni</button>
+          <button className="btn btn-primary" onClick={toggleBox}>Primijeni</button>
         </div>
       )}
     </div>

@@ -17,6 +17,7 @@ function DateSelector({ label, date, onChange }: DateSelectorProps) {
         placeholderText="Odaberi datum"
         dateFormat="yyyy-MM-dd"
         className="datepicker-input"
+        minDate={new Date()}
       />
     </div>
   );

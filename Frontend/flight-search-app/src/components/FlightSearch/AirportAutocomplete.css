@@ -1,0 +1,8 @@
+.no-results {
+    padding: 10px 12px;
+    color: #888;
+    cursor: default;
+    user-select: none;
+    pointer-events: none;
+  }
+  
