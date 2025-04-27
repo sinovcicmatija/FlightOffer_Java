@@ -1,0 +1,4 @@
+REDIS_HOST=redis-server-java
+REDIS_PORT=6379
+AMADEUS_API_KEY=amadeus-api-key
+AMADEUS_API_SECRET=amadeus-api-secret
