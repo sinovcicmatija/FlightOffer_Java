@@ -30,6 +30,7 @@ Nakon toga projekt je moguće pokrenuti pomoću jedne naredbe preko Dockera:
 ```bash
 docker-compose up --build
 ```
+Projekt je dostupan na: http://localhost:3000
 
 ## Pokretanje lokalno
 
